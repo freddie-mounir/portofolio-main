@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddie Mounir - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(100deg, #0f766e, #2563eb 55%, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .hero-pattern {
+            background:
+                radial-gradient(ellipse at 78% 20%, rgba(191, 219, 254, .55), transparent 35%),
+                radial-gradient(ellipse at 8% 85%, rgba(204, 251, 241, .55), transparent 33%),
+                linear-gradient(135deg, #f8fafc, #eff6ff 55%, #f5f3ff);
+        }
+
+        .card-hover {
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .card-hover:hover,
+        .card-hover:focus-within {
+            box-shadow: 0 24px 44px -20px rgba(15, 23, 42, .28);
+        }
+
+        #portfolio article {
+            transform: perspective(1100px) translate3d(0, var(--scroll-y, 0px), 0) rotateX(var(--scroll-tilt, 0deg)) rotateY(var(--scroll-turn, 0deg));
+            transform-style: preserve-3d;
+            transition: box-shadow .25s ease;
+        }
+
+        #portfolio article:hover,
+        #portfolio article:focus-within {
+            translate: 0 -6px;
+        }
+
+        #portfolio .project-art {
+            transform: translate3d(0, var(--art-float, 0px), 18px) scale(1.04);
+            transition: transform .15s ease-out;
+        }
+
+        .project-art {
+            isolation: isolate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-art::before,
+        .project-art::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 9999px;
+        }
+
+        .project-art::before {
+            width: 15rem;
+            height: 15rem;
+            top: -7rem;
+            right: -2rem;
+        }
+
+        .project-art::after {
+            width: 10rem;
+            height: 10rem;
+            bottom: -6rem;
+            left: 1.5rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            #portfolio article,
+            #portfolio .project-art {
+                transform: none;
+                translate: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#about" class="text-xl font-bold gradient-text" aria-label="Freddie Mounir home">freddie's<span class="text-slate-400">.</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a>
+                    <a href="#expertise" class="text-gray-700 hover:text-blue-600 transition">Expertise</a>
+                    <a href="#technologies" class="text-gray-700 hover:text-blue-600 transition">Technologies</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-blue-600 transition">Portfolio</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+                    <a href="https://freddie-mounir.github.io/portofolio/dist/assets/freddie%20resume.pdf"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                        Download CV
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-toggle" class="text-gray-700" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4 shadow-lg">
+            <div class="space-y-2">
+                <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600 transition">About</a>
+                <a href="#expertise" class="block py-2 text-gray-700 hover:text-blue-600 transition">Expertise</a>
+                <a href="#technologies" class="block py-2 text-gray-700 hover:text-blue-600 transition">Technologies</a>
+                <a href="#portfolio" class="block py-2 text-gray-700 hover:text-blue-600 transition">Portfolio</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition">Contact</a>
+                <a href="https://freddie-mounir.github.io/portofolio/dist/assets/freddie%20resume.pdf"
+                    class="block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition text-center">
+                    Download CV
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="hero-pattern py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div class="md:w-1/2 mb-4 md:mb-0">
+                    <p class="text-sm font-semibold uppercase tracking-[.2em] text-teal-700 mb-5 text-center md:text-left">Business · Technology · Healthcare</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center md:text-left leading-tight">
+                        Hi, I'm <br class="hidden md:block">
+                        <span class="gradient-text">Freddie Mounir.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-7 text-center md:text-left leading-relaxed max-w-xl mx-auto md:mx-0">
+                        I bring business strategy, technology, and healthcare together to create thoughtful digital experiences and practical solutions.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-8 justify-center md:justify-start">
+                        <span class="bg-white/80 text-blue-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm"><i class="fas fa-briefcase mr-2" aria-hidden="true"></i>Business</span>
+                        <span class="bg-white/80 text-purple-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm"><i class="fas fa-code mr-2" aria-hidden="true"></i>Web</span>
+                        <span class="bg-white/80 text-teal-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm"><i class="fas fa-heartbeat mr-2" aria-hidden="true"></i>Health</span>
+                    </div>
+                    <div class="flex justify-center md:justify-start">
+                        <a href="#contact"
+                            class="inline-flex items-center gap-3 bg-slate-900 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition shadow-lg shadow-slate-900/10">
+                            Let's work together <i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative max-w-sm w-full">
+                        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-teal-200 via-blue-200 to-purple-200 opacity-70 blur-xl" aria-hidden="true"></div>
+                        <img src="./dist/assets/freddie.jpg"
+                            alt="Freddie Mounir" class="relative rounded-[1.75rem] shadow-2xl w-full aspect-[4/5] object-cover border-4 border-white">
+                        <div class="absolute -bottom-5 -left-5 bg-white px-5 py-4 rounded-2xl shadow-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-teal-100 text-teal-700 w-11 h-11 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-medal text-xl" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">A multidisciplinary</p>
+                                    <p class="font-bold text-gray-900">business & tech mindset</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">My Expertise</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Combining business acumen with technical expertise to deliver
+                    comprehensive solutions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Business Card -->
+                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">MBA Holder</h3>
+                    <p class="text-gray-600 mb-4">Business administration certificate holder from Helwan University</p>
+
+                </div>
+
+                <!-- Tech Card -->
+                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tech Expert</h3>
+                    <p class="text-gray-600 mb-4">Need any info or tip for your technology scope, I'm here for you</p>
+
+                </div>
+
+                <!-- Health Card -->
+                <div class="bg-white p-8 rounded-xl shadow-md transition duration-300 card-hover">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heartbeat text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Health Information</h3>
+                    <p class="text-gray-600 mb-4">Merging medical background with technology would facilitate the future
+                        of medicine</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Best Technologies for Your Website</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">This is a key difference to choose your website technology
+                    based on your needs</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Websites -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-500 transition duration-300 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <i class="fab fa-wordpress text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Portfolio Websites</h3>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Get stunning portfolio websites</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Your business online presence</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>SEO friendly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Privacy & security is high even with large scale</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Supports multi-lingual</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-500 italic">It's recommended for business websites and portfolios with
+                        changable content like blog posts and products offers</p>
+                </div>
+
+                <!-- E-Commerce -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-md border-t-4 border-purple-500 transition duration-300 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-shopping-cart text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">E-Commerce</h3>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Framework for building online shops</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Sleek design for your store with eye catchy colors and theme</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Updated prices and offers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>SEO friendly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Orders and payments are secure, all with just one click</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-500 italic">It's highly recommended for online shops and eCommerce
+                        websites with high security and SEO</p>
+                </div>
+
+                <!-- Web Apps -->
+                <div
+                    class="bg-white p-8 rounded-xl shadow-md border-t-4 border-green-500 transition duration-300 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-code text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Web Apps</h3>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Building dynamic web apps for great business ideas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Easy access web based apps for your business</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>SEO friendly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Great performance with heavy usage</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-500 italic">It's recommended for business needs for start-ups and SMEs
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-sm font-semibold uppercase tracking-[.2em] text-teal-700 mb-3">Selected work</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Projects that make an impact</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">A selection of digital experiences across business, travel, mining, and agriculture.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                <!-- Gocloud website -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-md card-hover border border-gray-100">
+                    <div class="project-art h-52 bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 flex items-center justify-center">
+                        <i class="fas fa-cloud text-white text-6xl drop-shadow-lg" aria-hidden="true"></i>
+                        <span class="absolute top-5 left-5 text-white/75 text-xs font-semibold uppercase tracking-[.2em]">Digital services</span>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://gocloudeg.com" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-blue-700 transition">Gocloud</h3>
+                            <i class="fas fa-arrow-up-right-from-square text-xs text-gray-400 mb-2" aria-hidden="true"></i>
+                        </a>
+                        <p class="text-gray-600 mb-5">A digital home for a technology business and its services.</p>
+                        <div class="flex flex-wrap gap-2" aria-label="Project categories">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Bootstrap</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Business</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Portfolio</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PremierEgyTours -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-md card-hover border border-gray-100">
+                    <div class="project-art h-52 bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-800 flex items-center justify-center">
+                        <i class="fas fa-plane text-white text-6xl drop-shadow-lg" aria-hidden="true"></i>
+                        <span class="absolute top-5 left-5 text-white/75 text-xs font-semibold uppercase tracking-[.2em]">Travel & hospitality</span>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://premiertours.infinityfreeapp.com" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-teal-700 transition">PremierEgyTours</h3>
+                            <i class="fas fa-arrow-up-right-from-square text-xs text-gray-400 mb-2" aria-hidden="true"></i>
+                        </a>
+                        <p class="text-gray-600 mb-5">A travel agency website designed to help visitors explore and book tours.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Travel</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Online</span>
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">Agency</span>
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">WordPress</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Golden Arrow Mining -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-md card-hover border border-gray-100">
+                    <div class="project-art h-52 bg-gradient-to-br from-amber-400 via-yellow-600 to-stone-800 flex items-center justify-center">
+                        <i class="fas fa-mountain-sun text-white text-6xl drop-shadow-lg" aria-hidden="true"></i>
+                        <span class="absolute top-5 left-5 text-white/80 text-xs font-semibold uppercase tracking-[.2em]">Mining · Egypt</span>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.goldenarrowformining.com/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-amber-700 transition">Golden Arrow Mining</h3>
+                            <i class="fas fa-arrow-up-right-from-square text-xs text-gray-400 mb-2" aria-hidden="true"></i>
+                        </a>
+                        <p class="text-gray-600 mb-5">A corporate website for an Egyptian mining company, presenting its business and operations.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs">Mining</span>
+                            <span class="bg-stone-100 text-stone-800 px-2 py-1 rounded-full text-xs">Corporate</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Business</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Queenland Group -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-md card-hover border border-gray-100">
+                    <div class="project-art h-52 bg-gradient-to-br from-lime-500 via-green-600 to-emerald-900 flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-6xl drop-shadow-lg" aria-hidden="true"></i>
+                        <span class="absolute top-5 left-5 text-white/80 text-xs font-semibold uppercase tracking-[.2em]">Agriculture · Egypt</span>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://queen-land-chi.vercel.app/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-green-700 transition">Queenland Group</h3>
+                            <i class="fas fa-arrow-up-right-from-square text-xs text-gray-400 mb-2" aria-hidden="true"></i>
+                        </a>
+                        <p class="text-gray-600 mb-5">An Arabic-first company website showcasing fertilizer products and agricultural solutions.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Agriculture</span>
+                            <span class="bg-lime-100 text-lime-800 px-2 py-1 rounded-full text-xs">Fertilizers</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Arabic</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">For any Inquiry or Request for Web Design</h2>
+                <p class="text-blue-100 max-w-2xl mx-auto">Contact us through</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8 text-gray-800">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                        <input type="text" id="name" name="name"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                        <textarea id="message" name="message" rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="flex justify-center mt-12 space-x-6">
+                <a href="https://www.linkedin.com/feed/" class="text-white hover:text-blue-200">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="https://github.com/freddie-mounir" class="text-white hover:text-blue-200">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-400">Copyright © 2026 - All rights reserved</p>
+                <p class="text-gray-500 text-sm mt-2">Designed with ❤️ by Freddie Mounir</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', String(!isExpanded));
+            this.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
+            menu.classList.toggle('hidden', isExpanded);
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Give the project cards a subtle depth effect as they move through the viewport.
+        const projectCards = Array.from(document.querySelectorAll('#portfolio article'));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let scrollFrameRequested = false;
+
+        function updateProjectDepth() {
+            scrollFrameRequested = false;
+
+            if (reduceMotion.matches) {
+                projectCards.forEach(card => {
+                    card.style.removeProperty('--scroll-y');
+                    card.style.removeProperty('--scroll-tilt');
+                    card.style.removeProperty('--scroll-turn');
+                    card.style.removeProperty('--art-float');
+                });
+                return;
+            }
+
+            const viewportCenter = window.innerHeight / 2;
+            const travelDistance = window.innerHeight * 0.8;
+
+            projectCards.forEach((card, index) => {
+                const cardCenter = card.getBoundingClientRect().top + card.offsetHeight / 2;
+                const position = Math.max(-1, Math.min(1, (cardCenter - viewportCenter) / travelDistance));
+                const direction = index % 2 === 0 ? 1 : -1;
+
+                card.style.setProperty('--scroll-y', `${position * 14}px`);
+                card.style.setProperty('--scroll-tilt', `${position * -3}deg`);
+                card.style.setProperty('--scroll-turn', `${position * direction * 2}deg`);
+                card.style.setProperty('--art-float', `${position * -10}px`);
+            });
+        }
+
+        function requestProjectDepthUpdate() {
+            if (!scrollFrameRequested) {
+                scrollFrameRequested = true;
+                window.requestAnimationFrame(updateProjectDepth);
+            }
+        }
+
+        window.addEventListener('scroll', requestProjectDepthUpdate, { passive: true });
+        window.addEventListener('resize', requestProjectDepthUpdate);
+        reduceMotion.addEventListener('change', requestProjectDepthUpdate);
+        updateProjectDepth();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        document.getElementById('menu-toggle').setAttribute('aria-expanded', 'false');
+                        document.getElementById('menu-toggle').setAttribute('aria-label', 'Open navigation menu');
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
